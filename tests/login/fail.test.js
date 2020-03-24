@@ -13,44 +13,28 @@ module.exports = {
     'senha incorreta': (browser) => {
         let login = browser.page.login()
         login
-            .navigate()
-            .waitForElementVisible('@form', 3000)
-            .setValue('@emailInput', 'sf.rafael20@gmail.com')
-            .setValue('@passInput', '111')
-            .click('@loginButton')
+            .with('sf.rafael20@gmail.com', '111')
             .waitForElementVisible('@alertDanger', 3000)
             .assert.containsText('@alertDanger', 'Usuário e/ou senha inválidos')
     },
     'não cadastrado': (browser) => {
         let login = browser.page.login()
         login
-            .navigate()
-            .waitForElementVisible('@form', 3000)
-            .setValue('@emailInput', 'aaa@gmail.com')
-            .setValue('@passInput', '111')
-            .click('@loginButton')
+            .with('aaa@gmail.com', '111')
             .waitForElementVisible('@alertDanger', 3000)
             .assert.containsText('@alertDanger', 'Usuário e/ou senha inválidos')
     },
     'email não informado': (browser) => {
         let login = browser.page.login()
         login
-            .navigate()
-            .waitForElementVisible('@form', 3000)
-            .setValue('@emailInput', '')
-            .setValue('@passInput', '111')
-            .click('@loginButton')
+            .with('', '111')
             .waitForElementVisible('@alertInfo', 3000)
             .assert.containsText('@alertInfo', 'Opps. Cadê o email?')
     },
     'senha não informada': (browser) => {
         let login = browser.page.login()
         login
-            .navigate()
-            .waitForElementVisible('@form', 3000)
-            .setValue('@emailInput', 'aaa@gmail.com')
-            .setValue('@passInput', '')
-            .click('@loginButton')
+            .with('sf.rafael20@gmail.com', '')
             .waitForElementVisible('@alertInfo', 3000)
             .assert.containsText('@alertInfo', 'Opps. Cadê a senha?')
     }
